@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Admin Listen Page</title>
+</head>
+<body>
+  <h2>Admin - Listen to Saved Recordings</h2>
+  <ul id="recordingsList"></ul>
+
+  <script>
+    async function fetchRecordings() {
+      const res = await fetch('/list-recordings');
+      const files = await res.json();
+      const list = document.getElementById('recordingsList');
+
+      files.forEach(file => {
+        const li = document.createElement('li');
+        const audio = document.createElement('audio');
+        audio.src = '/uploads/' + file;
+        audio.controls = true;
+        li.textContent = file + ': ';
+        li.appendChild(audio);
+        list.appendChild(li);
+      });
+    }
+
+    fetchRecordings();
+  </script>
+</body>
+</html>
