@@ -99,9 +99,10 @@ try {
     res.redirect('/client.html');
   });
 
-  server.listen(3000, () => {
-    console.log('Server running on http://localhost:3000');
-  });
+  const PORT = process.env.PORT || 3000;
+server.listen(PORT, () => {
+  console.log(`Server running on http://localhost:${PORT}`);
+});
 
 } catch (err) {
   console.error('💥 Server crashed:', err);
